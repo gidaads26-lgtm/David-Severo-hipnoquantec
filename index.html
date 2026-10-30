@@ -115,6 +115,7 @@ h1,h2,.lead,.closing{margin-left:auto;margin-right:auto}
 .navlinks a.active{color:var(--green)}
 .navlinks a.active:after{transform:scaleX(1)}
 .desktop-cta{flex:none}
+.navlinks a.nav-cta,.nav-scrim{display:none}
 .navlinks{gap:0;font-size:.92rem}.navlinks a{padding:8px 9px}.navlinks a:after{left:9px;right:9px}.nav{gap:14px}
 .menu-toggle{display:none;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 16px;color:var(--green);font:600 .9rem var(--sans);cursor:pointer}
 .menu-toggle i{position:relative;display:block;width:16px;height:2px;background:currentColor;border-radius:2px;transition:background-color var(--t-ui)}
@@ -363,13 +364,25 @@ h1,h2,.lead,.closing{margin-left:auto;margin-right:auto}
 
 /* ============ responsivo ============ */
 @media (max-width:1260px){
-  .navlinks{display:none;position:absolute;top:76px;left:0;right:0;flex-direction:column;align-items:stretch;gap:2px;background:var(--paper);border-bottom:1px solid var(--line);box-shadow:0 24px 40px rgba(15,44,36,.12);padding:10px 20px 20px;max-height:calc(100vh - 68px);overflow:auto}
-  .navlinks.open{display:flex;animation:menuIn 260ms var(--ease)}
-  .navlinks a{padding:13px 12px;text-align:center;border-radius:12px}
+  .menu-toggle{display:inline-flex;margin-left:auto;position:relative;z-index:2;transition:background-color 220ms var(--ease),color 220ms var(--ease),border-color 220ms var(--ease),box-shadow 220ms var(--ease),transform 120ms var(--ease)}
+  .menu-toggle:active{transform:scale(.95)}
+  .menu-toggle[aria-expanded="true"]{background:var(--green);border-color:var(--green);color:#fff;box-shadow:0 8px 20px rgba(31,92,74,.28)}
+  .navlinks{display:flex;position:absolute;top:calc(100% + 10px);right:12px;left:auto;width:min(360px,calc(100vw - 24px));flex-direction:column;align-items:stretch;gap:2px;padding:12px;
+    background:rgba(252,253,252,.97);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid var(--line);border-radius:22px;box-shadow:0 2px 6px rgba(15,44,36,.06),0 28px 60px rgba(15,44,36,.2);
+    max-height:calc(100dvh - 100px);overflow:auto;overscroll-behavior:contain;
+    opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-12px) scale(.96);transform-origin:top right;
+    transition:opacity 220ms ease,transform 320ms var(--ease),visibility 0s linear 320ms}
+  .navlinks.open{opacity:1;visibility:visible;pointer-events:auto;transform:none;transition:opacity 260ms ease,transform 460ms var(--ease),visibility 0s}
+  .navlinks a{padding:14px 16px;text-align:center;border-radius:14px;font-size:1rem;opacity:0;transform:translateY(-6px);transition:opacity 200ms ease,transform 300ms var(--ease),background-color 180ms,color 180ms}
+  .navlinks.open a{opacity:1;transform:none;transition-delay:calc(70ms + var(--n,0) * 40ms)}
+  .navlinks a:not(:last-child):not(.nav-cta){border-bottom:1px solid transparent}
+  .navlinks a:active{background:rgba(31,92,74,.1)}
   .navlinks a:after{display:none}
-  .navlinks a.active{background:rgba(31,92,74,.07)}
-  .menu-toggle{display:inline-flex;margin-left:auto}
-  @keyframes menuIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+  .navlinks a.active{background:rgba(31,92,74,.08);color:var(--green)}
+  .navlinks a.nav-cta{display:inline-flex;margin-top:8px;padding:14px 20px;color:#fff;font-weight:600;background:var(--green);border-radius:999px}
+  .navlinks a.nav-cta:active{background:var(--green-deep)}
+  .nav-scrim{display:block;position:fixed;inset:0;z-index:35;background:rgba(10,30,25,.32);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);opacity:0;visibility:hidden;transition:opacity 280ms ease,visibility 0s linear 280ms}
+  .menu-open .nav-scrim{opacity:1;visibility:visible;transition:opacity 280ms ease,visibility 0s}
 }
 @media (max-width:960px){
   .desktop-cta{display:none}
@@ -394,10 +407,10 @@ h1,h2,.lead,.closing{margin-left:auto;margin-right:auto}
 @media (max-width:640px){
   .wrap{width:calc(100% - 32px)}
   .nav{height:68px}
-  .navlinks{top:68px}
   .brand small{display:none}
   .hero{padding:36px 0 96px}
   .hero-actions .btn{width:100%}
+  .hero-actions .btn{padding-left:18px;padding-right:18px;font-size:.96rem;gap:9px}
   .hero-photo{max-width:320px}
   .hero-photo:after{inset:auto -10px -10px auto}
   .trust{display:none}
@@ -508,10 +521,12 @@ h1,h2,.lead,.closing{margin-left:auto;margin-right:auto}
       <a href="#depoimentos">Depoimentos</a>
       <a href="#profissionais">Profissionais</a>
       <a href="#faq">Dúvidas</a>
+      <a class="btn nav-cta" href="https://wa.me/5513998072472?text=Ol%C3%A1!%20Vim%20pelo%20site%20do%20HipnoQuantec%C2%AE%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener" data-wa><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.8 9.8 0 0 0-8.4 14.8L2.3 21.8l4.9-1.3A9.8 9.8 0 1 0 12 2.2zm0 17.8a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8.9c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .1-1.2c0-.1-.2-.2-.5-.3z"/></svg>Agendar consulta agora</a>
     </nav>
     <a class="btn primary small desktop-cta" href="https://wa.me/5513998072472?text=Ol%C3%A1!%20Vim%20pelo%20site%20do%20HipnoQuantec%C2%AE%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener" data-wa><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.8 9.8 0 0 0-8.4 14.8L2.3 21.8l4.9-1.3A9.8 9.8 0 1 0 12 2.2zm0 17.8a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8.9c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .1-1.2c0-.1-.2-.2-.5-.3z"/></svg>Agendar consulta agora</a>
   </div>
 </header>
+<div class="nav-scrim" id="nav-scrim" aria-hidden="true"></div>
 
 <main>
 
@@ -522,7 +537,7 @@ h1,h2,.lead,.closing{margin-left:auto;margin-right:auto}
       <h1 data-load style="--i:0">Reprograme a sua mente, reequilibre o seu corpo e resgate a sua paz interior.</h1>
       <p class="lead" data-load style="--i:1">A sua dor emocional é única, e o tratamento também precisa ser. Através do método exclusivo HipnoQuantec®, unimos a reprogramação da Hipnose Clínica à precisão da tecnologia alemã Quantec® Pro para tratar a raiz da sua ansiedade.</p>
       <div class="hero-actions" data-load style="--i:2">
-        <a class="btn primary" href="https://wa.me/5513998072472?text=Ol%C3%A1!%20Vim%20pelo%20site%20do%20HipnoQuantec%C2%AE%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener" data-wa><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.8 9.8 0 0 0-8.4 14.8L2.3 21.8l4.9-1.3A9.8 9.8 0 1 0 12 2.2zm0 17.8a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8.9c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .1-1.2c0-.1-.2-.2-.5-.3z"/></svg>Agendar consulta agora</a>
+        <a class="btn primary" href="https://wa.me/5513998072472?text=Ol%C3%A1!%20Vim%20pelo%20site%20do%20HipnoQuantec%C2%AE%20e%20gostaria%20de%20agendar%20uma%20consulta." target="_blank" rel="noopener" data-wa><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.8 9.8 0 0 0-8.4 14.8L2.3 21.8l4.9-1.3A9.8 9.8 0 1 0 12 2.2zm0 17.8a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8.9c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .1-1.2c0-.1-.2-.2-.5-.3z"/></svg>Quero minha consulta de avaliação</a>
         <a class="btn ghost" href="#metodo">Ver como o método funciona</a>
       </div>
       <ul class="trust" data-load style="--i:3">
@@ -866,9 +881,16 @@ h1,h2,.lead,.closing{margin-left:auto;margin-right:auto}
 
 <script>
 const toggle=document.getElementById('menu-toggle'),nav=document.getElementById('navlinks');
-const tLabel=toggle.querySelector('span');
-toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));tLabel.textContent=open?'Fechar':'Menu'});
-nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');tLabel.textContent='Menu'}));
+const tLabel=toggle.querySelector('span'),scrim=document.getElementById('nav-scrim');
+nav.querySelectorAll('a').forEach((a,i)=>a.style.setProperty('--n',i));
+function setMenu(open){
+  nav.classList.toggle('open',open);document.documentElement.classList.toggle('menu-open',open);
+  toggle.setAttribute('aria-expanded',String(open));tLabel.textContent=open?'Fechar':'Menu';
+}
+toggle.addEventListener('click',()=>setMenu(!nav.classList.contains('open')));
+nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+scrim.addEventListener('click',()=>setMenu(false));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&nav.classList.contains('open')){setMenu(false);toggle.focus()}});
 // Vídeos: tocam na própria página quando o site está publicado (http/https).
 // Aberto direto do computador (file://), o YouTube recusa o player embutido; nesse caso abre no YouTube.
 const canEmbed=location.protocol==='https:'||location.protocol==='http:';
