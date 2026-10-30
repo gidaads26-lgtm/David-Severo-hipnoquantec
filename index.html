@@ -423,6 +423,71 @@ h1,h2,.lead,.closing{margin-left:auto;margin-right:auto}
   .js [data-reveal],.js .hero [data-load]{opacity:1;transform:none}
   .js .rings circle{stroke-dashoffset:0}
 }
+
+/* ============ rollover: cartões e etapas (mouse e toque) ============ */
+.pain,.card,.steps li,.timeline li,.tracked > div{-webkit-tap-highlight-color:transparent}
+.pain,.tracked > div{position:relative;overflow:hidden}
+.pain:before,.tracked > div:before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--mint),var(--green));transform:scaleX(0);transform-origin:center;transition:transform 420ms var(--ease)}
+.pain h3,.tracked h3,.card h3,.steps h3,.timeline b{transition:color 260ms var(--ease)}
+.icon,.icon svg{transition:transform 320ms var(--ease),background-color 260ms var(--ease),color 260ms var(--ease),box-shadow 260ms var(--ease)}
+.steps li{border-radius:var(--r-lg);transition:transform 320ms var(--ease)}
+.steps li:before{transition:background-color 260ms var(--ease),color 260ms var(--ease),transform 320ms var(--ease),box-shadow 260ms var(--ease)}
+.timeline li{border-radius:var(--r-md);transition:transform 320ms var(--ease)}
+.timeline span{transition:letter-spacing 320ms var(--ease)}
+
+:is(.pain,.tracked > div):is(:hover,.is-hot){transform:translateY(-4px);border-color:#b9d0c3;box-shadow:var(--shadow-md)}
+:is(.pain,.tracked > div):is(:hover,.is-hot):before{transform:scaleX(1)}
+:is(.pain,.tracked > div):is(:hover,.is-hot) h3{color:var(--green)}
+.card:not(.featured):is(:hover,.is-hot){transform:translateY(-6px);border-color:#b9d0c3;box-shadow:var(--shadow-md)}
+.card:not(.featured):is(:hover,.is-hot) .icon{background:var(--green);color:#fff;box-shadow:0 8px 18px rgba(31,92,74,.28);transform:translateY(-2px)}
+.card:not(.featured):is(:hover,.is-hot) .icon svg{transform:rotate(-12deg) scale(1.08)}
+.card:not(.featured):is(:hover,.is-hot) h3{color:var(--green)}
+.card:is(:hover,.is-hot) a{background-size:100% 1.5px}
+.card.featured{overflow:hidden}
+.card.featured:after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.12) 50%,transparent 65%);transform:translateX(-110%);transition:transform 900ms var(--ease);pointer-events:none}
+.card.featured:is(:hover,.is-hot){transform:translateY(-6px);box-shadow:0 26px 54px rgba(15,44,36,.32)}
+.card.featured:is(:hover,.is-hot):after{transform:translateX(110%)}
+.steps li:is(:hover,.is-hot){transform:translateY(-4px)}
+.steps li:is(:hover,.is-hot):before{background:var(--green);color:#fff;transform:scale(1.1);box-shadow:0 0 0 6px rgba(31,92,74,.12)}
+.steps li:is(:hover,.is-hot) h3{color:var(--green)}
+.timeline li:is(:hover,.is-hot){transform:translateY(-4px)}
+.js .timeline.in li:is(:hover,.is-hot):before,.timeline li:is(:hover,.is-hot):before{transform:scale(1.3);background:var(--green);border-color:var(--green);transition-delay:0s}
+.timeline li:is(:hover,.is-hot) b{color:var(--green)}
+.timeline li:is(:hover,.is-hot) span{letter-spacing:.02em}
+:is(.pain,.card,.tracked > div,.steps li,.timeline li):active{transform:translateY(-2px) scale(.985)}
+
+/* ============ etiquetas de seção: bolinha pulsando ============ */
+.label{position:relative}
+.label:after{content:"";position:absolute;left:12px;top:50%;width:12px;height:12px;margin-top:-6px;border-radius:50%;border:1.5px solid currentColor;opacity:0;pointer-events:none;animation:labelPulse 2.6s var(--ease) infinite}
+.label:before{animation:labelDot 2.6s var(--ease) infinite}
+@keyframes labelPulse{0%{transform:scale(1);opacity:.7}70%,100%{transform:scale(2.6);opacity:0}}
+@keyframes labelDot{0%,100%{transform:scale(1)}12%{transform:scale(.82)}28%{transform:scale(1.08)}}
+
+/* ============ botões de ação ============ */
+.btn{overflow:hidden;isolation:isolate;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.btn.primary:after,.anamnese .btn:after,.final-cta .btn:after{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.32) 50%,transparent 70%);transform:translateX(-130%);pointer-events:none}
+.anamnese .btn:after,.final-cta .btn:after{background:linear-gradient(110deg,transparent 30%,rgba(168,212,191,.55) 50%,transparent 70%)}
+.btn.shine:after{animation:btnShine 1100ms var(--ease) forwards}
+@keyframes btnShine{to{transform:translateX(130%)}}
+.btn:active{transform:scale(.965);transition-duration:90ms}
+.btn.primary:active{box-shadow:0 1px 0 rgba(255,255,255,.15) inset,0 4px 10px rgba(31,92,74,.22)}
+.btn .ripple{position:absolute;z-index:-1;border-radius:50%;pointer-events:none;background:rgba(255,255,255,.4);transform:scale(0);animation:ripple 650ms var(--ease) forwards}
+.btn.ghost .ripple,.anamnese .btn .ripple,.final-cta .btn .ripple{background:rgba(31,92,74,.18)}
+@keyframes ripple{to{transform:scale(1);opacity:0}}
+.btn svg{transition:transform 320ms var(--ease)}
+@media (hover:hover){
+  .btn.primary:hover:after,.anamnese .btn:hover:after,.final-cta .btn:hover:after{animation:btnShine 900ms var(--ease) forwards}
+  .btn:hover svg{animation:waWiggle 700ms var(--ease)}
+}
+@keyframes waWiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-14deg) scale(1.1)}55%{transform:rotate(10deg) scale(1.1)}80%{transform:rotate(-4deg)}}
+.floating{animation:waPulse 2.8s ease-out 1.2s infinite}
+.floating.hide{animation:none}
+@keyframes waPulse{0%{box-shadow:0 12px 30px rgba(16,48,42,.3),0 0 0 0 rgba(31,92,74,.5)}70%,100%{box-shadow:0 12px 30px rgba(16,48,42,.3),0 0 0 16px rgba(31,92,74,0)}}
+@media (prefers-reduced-motion:reduce){
+  .label:after{display:none}
+  .label:before,.floating{animation:none}
+  .btn:after{display:none}
+}
 </style>
 </head>
 <body>
@@ -865,6 +930,32 @@ if('IntersectionObserver' in window){
   document.querySelectorAll('[data-reveal], .timeline').forEach(el=>io.observe(el));
 }else{
   document.documentElement.classList.remove('js');
+}
+
+// Toque nos botões: onda a partir do ponto tocado
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+document.querySelectorAll('.btn').forEach(btn=>{
+  btn.addEventListener('pointerdown',e=>{
+    if(reduce)return;
+    const r=btn.getBoundingClientRect(),d=Math.max(r.width,r.height)*2.2;
+    const w=document.createElement('span');w.className='ripple';
+    w.style.cssText=`width:${d}px;height:${d}px;left:${e.clientX-r.left-d/2}px;top:${e.clientY-r.top-d/2}px`;
+    btn.appendChild(w);w.addEventListener('animationend',()=>w.remove());
+  });
+});
+if('IntersectionObserver' in window&&!reduce){
+  // Brilho que passa uma vez no botão quando ele aparece na tela
+  const shineIO=new IntersectionObserver(es=>es.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const b=e.target;shineIO.unobserve(b);
+    setTimeout(()=>b.classList.add('shine'),450);
+  }),{threshold:.9});
+  document.querySelectorAll('.btn.primary,.anamnese .btn,.final-cta .btn').forEach(b=>shineIO.observe(b));
+  // Em telas de toque, o cartão no centro da tela recebe o mesmo destaque do mouse
+  if(matchMedia('(hover:none)').matches){
+    const hotIO=new IntersectionObserver(es=>es.forEach(e=>e.target.classList.toggle('is-hot',e.isIntersecting)),{rootMargin:'-42% 0px -42% 0px'});
+    document.querySelectorAll('.pain,.card,.steps li,.timeline li,.tracked > div').forEach(el=>hotIO.observe(el));
+  }
 }
 </script>
 </body>
