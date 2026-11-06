@@ -519,6 +519,22 @@ h1,h2,.lead,.closing{margin-left:auto;margin-right:auto}
   .hero-actions .btn.cta{padding-left:8px;padding-right:16px;font-size:.98rem}
 }
 @media (prefers-reduced-motion:reduce){.btn.cta,.btn.ghost{transition:none}}
+
+/* ============ títulos: mais largos e com mais respiro ============ */
+h2{max-width:30ch;line-height:1.16;text-wrap:pretty}
+.hero h1{max-width:20ch;line-height:1.1;text-wrap:pretty}
+.label + h2{margin-top:6px}
+h2 + .lead,h1 + .lead{margin-top:24px}
+.final-cta h2,.pros-head h2,.anamnese h2{max-width:28ch}
+.split h2,.q-text h2{max-width:24ch}
+.solo-text h2{max-width:28ch}
+@media (max-width:960px){.pros-head h2{max-width:28ch}}
+@media (max-width:640px){
+  h2,.final-cta h2,.pros-head h2,.anamnese h2,.split h2,.q-text h2,.solo-text h2{max-width:none;font-size:clamp(1.62rem,1.2rem + 2.2vw,1.9rem);line-height:1.2;text-wrap:balance}
+  .hero h1{max-width:none;font-size:clamp(2rem,1.45rem + 2.8vw,2.4rem);line-height:1.12}
+  .label + h2{margin-top:4px}
+  h2 + .lead,h1 + .lead{margin-top:20px}
+}
 </style>
 </head>
 <body>
