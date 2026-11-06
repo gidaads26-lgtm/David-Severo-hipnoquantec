@@ -469,61 +469,68 @@ h1,h2,.lead,.closing{margin-left:auto;margin-right:auto}
 @keyframes labelPulse{0%{transform:scale(1);opacity:.7}70%,100%{transform:scale(2.6);opacity:0}}
 @keyframes labelDot{0%,100%{transform:scale(1)}12%{transform:scale(.82)}28%{transform:scale(1.08)}}
 
-/* ============ botões de ação ============ */
-.btn{overflow:hidden;isolation:isolate;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;-webkit-user-select:none}
-.btn.cta:after{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.32) 50%,transparent 70%);transform:translateX(-130%);pointer-events:none}
-.btn.shine:after{animation:btnShine 1100ms var(--ease) forwards}
-@keyframes btnShine{to{transform:translateX(130%)}}
-.btn .ripple{position:absolute;z-index:-1;border-radius:50%;pointer-events:none;background:rgba(255,255,255,.4);transform:scale(0);animation:ripple 650ms var(--ease) forwards}
-.btn.ghost .ripple{background:rgba(27,47,92,.16)}
-@keyframes ripple{to{transform:scale(1);opacity:0}}
-.btn svg{transition:transform 320ms var(--ease)}
-@media (hover:hover){
-  .btn.cta:hover:after{animation:btnShine 900ms var(--ease) forwards}
-  .btn:hover svg{animation:waWiggle 700ms var(--ease)}
-}
-@keyframes waWiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-14deg) scale(1.1)}55%{transform:rotate(10deg) scale(1.1)}80%{transform:rotate(-4deg)}}
-.floating{animation:waPulse 2.8s ease-out 1.2s infinite}
-.floating.hide{animation:none}
-@keyframes waPulse{0%{box-shadow:inset 0 1px 0 var(--cta-hl),0 4px 0 var(--cta-edge),0 14px 30px var(--cta-glow),0 0 0 0 var(--cta-ring)}70%,100%{box-shadow:inset 0 1px 0 var(--cta-hl),0 4px 0 var(--cta-edge),0 14px 30px var(--cta-glow),0 0 0 16px transparent}}
-@media (prefers-reduced-motion:reduce){
-  .label:after{display:none}
-  .label:before,.floating{animation:none}
-  .btn:after{display:none}
-}
-
-/* ============ botões de agendamento ============ */
-:root{--cta-top:#22396B;--cta-bot:#1B2F5C;--cta-edge:#07142F;--cta-ink:#fff;--cta-glow:rgba(27,47,92,.34);--cta-hl:rgba(255,255,255,.22);--cta-ic-bg:#fff;--cta-ic:#1B2F5C;--cta-ring:rgba(27,47,92,.45)}
-.anamnese,.final-cta{--cta-top:#FFFFFF;--cta-bot:#F1F3F8;--cta-edge:#AEB8CF;--cta-ink:#0B1D41;--cta-glow:rgba(0,0,0,.28);--cta-hl:rgba(255,255,255,.9);--cta-ic-bg:#1B2F5C;--cta-ic:#fff}
-.btn{font-weight:700;letter-spacing:.003em}
+/* ============ botões ============ */
+.btn{overflow:hidden;isolation:isolate;font-weight:700;letter-spacing:.003em;-webkit-tap-highlight-color:transparent;touch-action:manipulation;user-select:none;-webkit-user-select:none}
 .btn.cta{
-  min-height:58px;padding:9px 28px 9px 9px;gap:12px;font-size:1.04rem;color:var(--cta-ink);
-  background:linear-gradient(180deg,var(--cta-top) 0%,var(--cta-bot) 100%);border:0;
-  box-shadow:inset 0 1px 0 var(--cta-hl),0 4px 0 var(--cta-edge),0 14px 28px var(--cta-glow);
-  transition:transform 160ms var(--ease),box-shadow 160ms var(--ease),filter 200ms var(--ease)}
-.btn.cta svg{box-sizing:content-box;width:20px;height:20px;padding:9px;border-radius:50%;background:var(--cta-ic-bg);color:var(--cta-ic);box-shadow:0 2px 6px rgba(0,0,0,.18)}
-.btn.cta:active{transform:translateY(4px);box-shadow:inset 0 1px 0 var(--cta-hl),0 0 0 var(--cta-edge),0 4px 10px var(--cta-glow);transition-duration:70ms}
-.btn.cta:focus-visible{outline:3px solid var(--cta-ring);outline-offset:3px}
+  --b-bg:linear-gradient(180deg,#203A72 0%,#0B1D41 100%);--b-ink:#fff;--b-fill:#E6BB55;--b-fill-ink:#0B1D41;
+  --b-ic-bg:#E6BB55;--b-ic:#0B1D41;--b-ic-bg-h:#0B1D41;--b-ic-h:#E6BB55;
+  --b-shadow:inset 0 0 0 1px rgba(230,187,85,.32),0 1px 2px rgba(7,20,47,.25),0 10px 24px rgba(11,29,65,.24);
+  --b-shadow-h:inset 0 0 0 1px rgba(230,187,85,.5),0 2px 4px rgba(7,20,47,.2),0 18px 36px rgba(201,154,51,.34);
+  --b-ripple:rgba(255,255,255,.35);--b-ring:rgba(230,187,85,.55);
+  min-height:58px;padding:9px 30px 9px 9px;gap:14px;font-size:1.04rem;color:var(--b-ink);
+  background:var(--b-bg);border:0;box-shadow:var(--b-shadow);
+  transition:transform 200ms var(--ease),box-shadow 300ms var(--ease),color 320ms var(--ease)}
+.anamnese .btn.cta,.final-cta .btn.cta{
+  --b-bg:linear-gradient(180deg,#F1CD78 0%,#E3B34C 100%);--b-ink:#0B1D41;--b-fill:#fff;--b-fill-ink:#0B1D41;
+  --b-ic-bg:#0B1D41;--b-ic:#E6BB55;--b-ic-bg-h:#0B1D41;--b-ic-h:#E6BB55;
+  --b-shadow:0 1px 2px rgba(0,0,0,.2),0 12px 28px rgba(0,0,0,.32);--b-shadow-h:0 2px 4px rgba(0,0,0,.2),0 18px 38px rgba(0,0,0,.4);
+  --b-ripple:rgba(11,29,65,.14)}
+.btn.ghost{
+  --b-fill:#0B1D41;--b-ripple:rgba(255,255,255,.3);
+  min-height:56px;color:var(--green-deep);background:rgba(255,255,255,.7);border:1.5px solid var(--green-deep);box-shadow:0 6px 16px rgba(11,29,65,.07);
+  transition:transform 200ms var(--ease),box-shadow 300ms var(--ease),color 320ms var(--ease)}
+/* preenchimento que desliza no hover */
+.btn.cta:before,.btn.ghost:before{content:"";position:absolute;z-index:-1;inset:0;border-radius:inherit;background:var(--b-fill);transform:scaleX(0);transform-origin:right center;transition:transform 460ms var(--ease)}
+.btn.cta svg{box-sizing:content-box;flex:none;width:20px;height:20px;padding:9px;border-radius:50%;background:var(--b-ic-bg);color:var(--b-ic);
+  transition:background-color 320ms var(--ease),color 320ms var(--ease),transform 420ms var(--ease)}
 .btn.cta.small{min-height:48px;padding:6px 20px 6px 6px;gap:10px;font-size:.94rem}
 .btn.cta.small svg{width:17px;height:17px;padding:7px}
-.btn.ghost{min-height:56px;color:var(--green);background:#fff;border:1.5px solid var(--green);box-shadow:0 4px 0 rgba(27,47,92,.2),0 8px 18px rgba(11,29,65,.08);transition:transform 160ms var(--ease),box-shadow 160ms var(--ease),background-color 200ms var(--ease)}
-.btn.ghost:active{transform:translateY(4px);box-shadow:0 0 0 rgba(27,47,92,.2),0 3px 8px rgba(11,29,65,.08);transition-duration:70ms}
+.btn:focus-visible{outline:3px solid var(--b-ring,rgba(230,187,85,.6));outline-offset:3px}
 @media (hover:hover){
-  .btn.cta:hover{transform:translateY(-2px);filter:brightness(1.06);box-shadow:inset 0 1px 0 var(--cta-hl),0 6px 0 var(--cta-edge),0 20px 36px var(--cta-glow)}
-  .btn.cta:hover:active{transform:translateY(4px)}
-  .btn.ghost:hover{transform:translateY(-2px);background:var(--sage-soft);box-shadow:0 6px 0 rgba(27,47,92,.2),0 14px 26px rgba(11,29,65,.12)}
+  .btn.cta:hover,.btn.ghost:hover{transform:translateY(-2px)}
+  .btn.cta:hover{color:var(--b-fill-ink);box-shadow:var(--b-shadow-h)}
+  .btn.ghost:hover{color:#fff;box-shadow:0 14px 28px rgba(11,29,65,.18)}
+  .btn.cta:hover:before,.btn.ghost:hover:before{transform:scaleX(1);transform-origin:left center}
+  .btn.cta:hover svg{background:var(--b-ic-bg-h);color:var(--b-ic-h);transform:rotate(-12deg) scale(1.06)}
 }
-.floating.btn.cta{padding-right:22px}
+/* toque: confirma o clique */
+.btn.cta:active,.btn.ghost:active{transform:scale(.97);transition-duration:90ms}
+.btn.cta:active:before,.btn.ghost:active:before{transform:scaleX(1);transform-origin:left center;transition-duration:260ms}
+.btn.cta:active{color:var(--b-fill-ink)}
+.btn.ghost:active{color:#fff}
+.btn.cta:active svg{background:var(--b-ic-bg-h);color:var(--b-ic-h)}
+.btn .ripple{position:absolute;z-index:-1;border-radius:50%;pointer-events:none;background:var(--b-ripple,rgba(255,255,255,.35));transform:scale(0);animation:ripple 650ms var(--ease) forwards}
+@keyframes ripple{to{transform:scale(1);opacity:0}}
+/* brilho que passa uma vez quando o botão aparece */
+.btn.cta:after{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(110deg,transparent 32%,rgba(255,255,255,.22) 50%,transparent 68%);transform:translateX(-130%);pointer-events:none}
+.btn.shine:after{animation:btnShine 1200ms var(--ease) forwards}
+@keyframes btnShine{to{transform:translateX(130%)}}
+/* botão flutuante do celular */
+.floating.btn.cta{padding-right:22px;animation:waPulse 2.8s ease-out 1.2s infinite}
+.floating.hide{animation:none}
+@keyframes waPulse{0%{box-shadow:var(--b-shadow),0 0 0 0 var(--b-ring)}70%,100%{box-shadow:var(--b-shadow),0 0 0 16px rgba(230,187,85,0)}}
 @media (max-width:640px){
-  .btn.cta{font-size:1rem;padding:8px 20px 8px 8px}
+  .btn.cta{font-size:1rem;padding:8px 22px 8px 8px}
   .hero-actions .btn.cta{padding-left:8px;padding-right:16px;font-size:.98rem}
 }
-@media (prefers-reduced-motion:reduce){.btn.cta,.btn.ghost{transition:none}}
+@media (prefers-reduced-motion:reduce){
+  .label:after{display:none}
+  .label:before,.floating.btn.cta{animation:none}
+  .btn:after{display:none}
+  .btn,.btn:before,.btn svg{transition:none}
+}
 
-/* paleta azul-marinho e dourado: botões */
-:root{--cta-top:#F0CB72;--cta-bot:#E3B34C;--cta-edge:#A97E27;--cta-ink:#0B1D41;--cta-glow:rgba(169,126,39,.32);--cta-hl:rgba(255,255,255,.55);--cta-ic-bg:#0B1D41;--cta-ic:#fff;--cta-ring:rgba(230,187,85,.6)}
-.anamnese,.final-cta{--cta-top:#F0CB72;--cta-bot:#E3B34C;--cta-edge:#A97E27;--cta-ink:#0B1D41;--cta-glow:rgba(0,0,0,.35);--cta-hl:rgba(255,255,255,.55);--cta-ic-bg:#0B1D41;--cta-ic:#fff}
-.btn.ghost{color:var(--green-deep);border-color:var(--green-deep)}
+/* paleta azul-marinho e dourado */
 .label{background:rgba(27,47,92,.07);color:var(--green-deep)}
 .label:before,.label:after{color:#C99A33}
 .anamnese .label,.final-cta .label{color:var(--mint)}
