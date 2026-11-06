@@ -25,5 +25,6 @@ Os trechos marcados em amarelo no site (classe `pending`) ainda dependem de dado
 ## Arquivos
 
 - `index.html`: o site.
-- `og-image.jpg`: imagem que aparece quando o link do site é compartilhado (WhatsApp, Instagram, Facebook).
+- `og-hipnoquantec.jpg`: imagem que aparece quando o link do site é compartilhado (WhatsApp, Instagram, Facebook).
+- `img/`: fotos usadas no site (retratos, consultório e capas dos depoimentos).
 - `docs/prompt-claude-code.md`: prompt usado para gerar a copy.no Claude Code.
