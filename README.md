@@ -25,5 +25,6 @@ Os trechos marcados em amarelo no site (classe `pending`) ainda dependem de dado
 ## Arquivos
 
 - `index.html`: o site.
+- `paleta-azul-dourado.html`: versão de teste do site com a paleta azul-marinho e dourado (não aparece no Google). Acesse em `/paleta-azul-dourado.html`.
 - `og-image.jpg`: imagem que aparece quando o link do site é compartilhado (WhatsApp, Instagram, Facebook).
 - `docs/prompt-claude-code.md`: prompt usado para gerar a copy.no Claude Code.
