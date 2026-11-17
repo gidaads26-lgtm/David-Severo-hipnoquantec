@@ -58,6 +58,12 @@ img{max-width:100%}
 p{margin:0 0 1em}
 :focus-visible{outline:3px solid var(--mint);outline-offset:3px;border-radius:8px}
 ::selection{background:var(--mint-soft);color:var(--forest)}
+/* sem tarja azul de toque no celular; feedback visual fica por conta dos próprios estados */
+html{-webkit-tap-highlight-color:transparent}
+a,button,summary,label,[role="button"],.menu-toggle,.vcard,.nav-scrim{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+button,summary,.menu-toggle,.vcard,.btn,.brand,.foot-social a,.place-map,#navlinks a{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+:focus:not(:focus-visible){outline:none}
+.menu-toggle:active{transform:scale(.96)}
 .wrap{width:min(1160px,calc(100% - 40px));margin-inline:auto}
 
 h1,h2,h3{font-family:var(--serif);color:var(--ink);margin:0;font-weight:500;text-wrap:balance;font-optical-sizing:auto}
